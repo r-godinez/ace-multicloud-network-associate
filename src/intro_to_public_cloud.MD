@@ -244,6 +244,42 @@ Moving from on-premises infrastructure to the cloud involves shifting data and a
 ~ The flexibility of auto-scaling in the public cloud empowers enterprises to adjust resource allocation based on demand fluctuations dynamically. This ensures optimal performance and cost-efficiency, seamlessly allowing businesses to handle varying workloads without manual intervention.
 
 4. Hardware Ownership vs. Pay-as-you-go Model 
-- Once migrate to the public cloud, there is no need to invest in and maintaining physical hardware infrastructure. Pay-as-you-go model shifts from capital to opterating expenses offering financial flexibility and scalability **aligning costs with actual usage**.
+- Once migrate to the public cloud, there is no need to invest in and maintaining physical hardware infrastructure. Pay-as-you-go model shifts from capital to operating expenses offering financial flexibility and scalability **aligning costs with actual usage**.
 
 ~ When enterprises migrate to the public cloud, they no longer need to invest in and maintain physical hardware infrastructure. Instead, they embrace a pay-as-you-go model, only paying for the resources consumed. This shift from capital to operating expenses offers financial flexibility and scalability, aligning costs with actual usage.
+
+### Considerations When Moving to the Cloud
+- public cloud enables greater AGILITY and SCALABILITY in building and deploying solutions, it requires relinquishing some control compared to on-prem setups
+
+1. Urgency of DevOps drove cloud migration. Network components like routers, switches, and firewalls don't seamlessly align with cloud infrastructure. Instead, the cloud offers its own suite of infrastructure servers to support application development. 
+
+~ DevOps drove the cloud migration, leaving networking and security teams trailing. Traditional networking components like routers, switches, and firewalls don't seamlessly align with the cloud's infrastructure. It's not a direct translation from on-premises to cloud; instead, the cloud offers its own suite of infrastructure services to support application development.
+
+1. The focal point of networking and security has shifted dramatically with CSP granting immediate internet accessibility by assigning application a public IP address.
+
+~ So, from a networking and security standpoint in the public cloud, the focal point of networking and security has shifted dramatically. Unlike on-premises setups, where applications typically pass through a DMZ for security inspection, public cloud environments, with certain cloud service providers (CSPs), grant immediate internet accessibility by assigning applications a public IP address.
+
+3. on-prem networking elements differ from CSP networking elements.
+
+~ Enterprises must adapt to a vastly different model in the cloud. Even foundational networking elements like route tables are managed differently by each CSP. Additionally, new services such as Identity and Access Management (IAM) are introduced, with each CSP offering its distinct version alongside unique managed services for networking and security.
+
+4. 
+
+~ Navigating this complexity while maintaining an agile and secure operational framework to meet evolving business demands poses a significant task - but is an achievable one.
+
+### Design Considerations
+1. Considerations with Building
+- CSP offer foundational constructs like VPC, route tables, subnets, and compute instances. User determines how they use and integrate these components. There is a lack of standardized best practices.
+
+~ Considerations with Building: Cloud Service Providers (CSPs) offer foundational constructs such as virtual private clouds (VPCs), route tables, subnets, and compute instances. However, it's up to the user to determine how to use and integrate these components to accommodate their applications effectively. Unfortunately, there's a lack of standardized best practices or reference architectures for networking.
+
+2. Considerations with Operations
+- CSP lack comprehensive toolkit for managing networking environments. Notable absence of tools tailored to troubleshoot network issues rapidly.
+  
+~ Considerations with Operations: CSPs currently lack a comprehensive toolkit for managing networking environments efficiently. While basic tools like flow logs exist, their export capabilities are often limited, and visualization options must be improved. Furthermore, there is a notable absence of tools tailored to troubleshoot network issues rapidly.
+
+3. Considerations with Growing
+- CSP don't advocate for multicloud systems
+
+~ Considerations with Growing: Consider a scenario where your business requires expansion from a single region to multiple regions or even to another cloud—a trend rapidly gaining momentum. Unfortunately, none of the CSPs is particularly incentivized to assist in expanding to other clouds, as providing multicloud support doesn't align with their best interests. In fact, some CSPs actively avoid using the term "multicloud" altogether.
+
