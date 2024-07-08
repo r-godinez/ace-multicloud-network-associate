@@ -131,8 +131,166 @@ By the end of this lesson, you'll have a comprehensive understanding of CSP nati
 
 ~ AWS Transit Gateway (TGW) serves as a centralized hub connecting Virtual Private Clouds (VPCs) and on-premises networks, simplifying network architecture by eliminating complex peering relationships. To ensure successful integration, organizations must align their networking, security, and day-to-day operational requirements with AWS TGW capabilities, referring to AWS documentation for guidance and best practices.
 
+#### A Conversation on CSPs
 The team will discuss five potential design considerations that may arise when using this service. First up is the cost of the AWS TGW VPC attachment.
+1. Hidden fees in TGW
+- TGW have attachment costs and data flow costs (VPC flow logs) 
+- Aviatrix only charges for attachments and not for data flow. Flow analysis, log analysis, and storage is included with license
+2. Difficulty Troubleshooting in TGW
+- TGW doesn't provide access to tools like packet capture, tcpdump, traceroute, ping
+- Aviatrix provides deeper visibility and access 
+3. Overlapping IP
+- TGW doesn't support overlapping IP
+- If need solutions for overlapping IP, consider other options
+4. Encryption and Data speed
+- AWS Direct Connect allows connection directly to on-prem however doesn't provide end-to-end IPSec encryption and is limited to 1.25 Gbps
+- Aviatrix supports direct connect and supports 10,25,40,etc Gbps while encrypting the IPSec tunnel without bandwidth or throughput degradation.
 
+#### Microsoft Azure Virtual WAN (vWAN)
+Microsoft Azure Virtual WAN is a networking service that combines many networking, security, and routing functionalities to provide a single operational interface. The Virtual WAN architecture is a hub and spoke architecture for branches (VPN/SD-WAN devices), users (Azure VPN/OpenVPN/IKEv2 clients), ExpressRoute circuits, and virtual networks (VNETs). It enables a transit network architecture where the cloud-hosted network 'hub' enables transitive connectivity between endpoints that might be distributed across different types of 'spokes'.
+![alt text](diagrams/vWAN.png)
+
+You should consider and review your networking, security, and day two operations business requirements and refer to the Azure vWAN documentation to ensure that they satisfy those requirements. The following are a few considerations provided to help customers make informed decisions.
+
+Azure utilizes vWAN, a service they launched that is aimed at connecting multiple VNETs where workloads are deployed. 
+
+Azure's vWAN service simplifies connecting multiple VNETs, where traditionally, direct VNET connections lacked transitive routing, requiring a complex full mesh network. However, Azure supports more efficient structures like the hub-and-spoke topology, which reduces complexity by connecting "spoke" VNETs to a central "hub" VNET. 
+
+This approach streamlines network management as the number of VNETs increases. More details are available in Azure’s documentation on their networking architecture.
+
+#### GCP Global VPC
+Google Cloud Platform (GCP) stands out with its Global Virtual Private Cloud (VPC), offering a unique networking solution not found in AWS or Azure. This global virtual network covers all regions worldwide, providing a single VPC for an entire organization, segmented within projects. With this approach, enterprises can utilize a single VPC to connect multiple regions without relying on the public internet for communication.
+
+![alt text](diagrams/GCP_Global_VPC.png)
+
+To make the most of GCP's networking capabilities, customers should carefully assess their networking, security, and operational requirements. Consulting the latest GCP VPC documentation is essential to ensure these needs are met. Below are key considerations to guide customers in making well-informed decisions.
+
+In this section, we'll explore why a global VPC might pose risks and why opting for regional VPCs could be a safer, more secure alternative for managing your workloads across different locations.
+
+Now, understanding GCP’s technical differences is really important, especially since GCP came onto the scene after AWS and Azure. They learned from the challenges users faced on those platforms while carving out their unique offerings. 
+
+Let's discuss the global VPC concept—it's remarkable technologically. Imagine spinning up virtual machines in Frankfurt, Singapore, and San Francisco, and they all start talking to each other seamlessly without you having to lift a finger, thanks to internal routing within the global VPC.
+
+But here's the thing: GCP realized that while this approach works great in many cases, it might not be the best fit for everyone. Especially if you're a large enterprise or in a highly regulated industry like healthcare or finance. Why? Because having all your eggs in one basket, so to speak, can create a huge problem if something goes wrong. If there's an issue in one location, it could potentially affect operations in others. And without the right safeguards in place, sensitive data could be at risk.
+
+So, what's the solution? GCP recommends against using a global VPC for all your workloads. Instead, they suggest creating regional VPCs to keep your data safe and sound, no matter where it's located.
+
+Unlike other CSPs, in GCP, a Virtual Machine (VM) is allowed to have only one interface for each VPC network that it connects to. Multi-NIC virtual machines can have a maximum of 8 interfaces. This means that a VM can connect to a maximum of 8 VPCs.
+
+In AWS and Azure, when you deploy a virtual machine and you have multiple network interfaces (NICs), they can all sit in the same VPC or VNET. In GCP, that's not possible. And this is a drawback of a global VPC. If you have a virtual machine with 2 NICs or 3 NICs, every single NIC must be part of a different VPC. And in case of GCP, they have a maximum 8 interface limit. So you can have one virtual machine with 8 interfaces max and one VPC connected to it.
+
+#### OCI
+Oracle Cloud Infrastructure (OCI) offers a Dynamic Routing Gateway (DRG) service. A DRG is a virtual router to which customers can attach Virtual Cloud Networks (VCNs), Remote Peering Connections, Site-to-Site IPSec VPN tunnels, and OCI FastConnect private circuits.
+
+![alt text](diagrams/oci_drg.png)
+
+You should consider and review OCI DRG networking, security, and day two operations business requirements and refer to the latest OCI DRG documentation to ensure they satisfy those requirements. The following are a few considerations provided to help customers make informed decisions.
+
+One key component of OCI's networking architecture is the Dynamic Routing Gateway (DRG). This feature offers routing capabilities to facilitate connectivity between VCNs and external networks. While the DRG does afford users the option to configure routes, diving into the intricacies of route selection within this gateway can prove to be a daunting task. Users often find themselves challenged when identifying the most optimal route configuration within the DRG.
+
+
+Navigating through the route options and features provided by the DRG requires a thorough understanding of networking principles and OCI's specific routing functionalities. Customers may encounter complexities when attempting to determine the most suitable route for their network traffic within the OCI environment. As such, it is essential for users to invest time and effort into comprehensively exploring and understanding the route selection process within OCI's DRG to ensure efficient and reliable network connectivity.
 
 ## Predict Obstacles with CSPs Based on a Given Scenario
+In this lesson, we will explore scenarios where organizations face common obstacles when managing their multicloud environments. As more businesses adopt multicloud strategies to leverage the unique capabilities of different cloud service providers (CSPs), they encounter various hurdles related to skills gaps, visibility and control, day-to-day operations, and cost optimization.
+
+### Common CSP Considerations
+Understanding the considerations associated with Cloud Service Providers (CSPs) is crucial for effectively managing cloud resources and anticipating potential obstacles. Here are some of the most common factors businesses might face:
+
+1. Downtime and Availability
+   - Overview: Even the most reliable cloud providers experience outages, which can disrupt business operations and affect service delivery. It’s important to understand the potential for downtime and plan accordingly.
+   - Impact: Service interruptions can lead to lost revenue, diminished productivity, and customer dissatisfaction.
+   - **Mitigation Strategies: Strategies include designing fault-tolerant systems, using multi-region deployments to ensure redundancy, and having a robust disaster recovery plan.**
+2. Vendor Lock-In
+   - Overview: Relying heavily on a single CSP's technologies and ecosystem can restrict a company’s flexibility and bargaining power, making it difficult to migrate to another provider without significant costs and complexities.
+   - Impact: Vendor lock-in can lead to higher operational costs, limited technology options, and dependency on the provider’s pricing changes, service quality, and feature updates.
+   - **Mitigation Strategies: Adopt a Multicloud Network Software (MCNS), use open standards and interoperable tools, and carefully plan service agreements to ensure portability and to avoid dependency and "forklifting" traditional networking strategies into the public cloud.**
+3. Security and Compliance
+   - Overview: Different CSPs provide various levels of security measures, and not all may meet specific industry regulations or compliance standards required for certain businesses.
+   - Impact: Insufficient security and compliance measures can expose businesses to data breaches, legal penalties, and a damaged reputation.
+   - **Mitigation Strategies: Conduct thorough due diligence on CSPs' security practices, understand their compliance certifications, and integrate additional security layers if necessary. Regular audits and adherence to best practices in security are also critical.**
+4. Cost Predictability
+   - Overview: Forecasting expenses in cloud computing can be challenging due to variable cost structures based on usage, data transfer fees, and the dynamic nature of cloud resources.
+   - Impact: Unanticipated costs can lead to significant budget overruns, affecting financial planning and operational efficiency.
+   - **Mitigation Strategies: Use cost management tools provided by CSPs, set up clear monitoring and alerts for budget thresholds, and regularly review and optimize cloud spending according to usage patterns and business needs.**
+
+### Scenario 1 - TechCo
+Securing High-Speed Data Transfer with Aviatrix over AWS Direct Connect
+
+Background: 
+Our customer, TechCo, is a rapidly growing technology company that relies heavily on cloud services for critical workloads. They recently expanded their infrastructure to include an AWS Virtual Private Cloud (VPC) and are leveraging AWS Direct Connect to establish a dedicated, high-speed connection between their on-premises data center and the AWS cloud.
+
+Obstacles: 
+TechCo’s data transfer requirements have skyrocketed. They must move large volumes of sensitive data between their on-premises environment and AWS at speeds exceeding 10 Gbps. However, native IPsec VPN solutions struggle to handle such massive throughput efficiently.  Native IPSec would also limit it to only 1.25 Gbps. 
+
+Solutions: 
+Aviatrix
+
+### Scenario 2 - CloudCo Enterprises
+Background: 
+An enterprise customer with a multicloud strategy faces challenges due to a skills gap in managing multiple clouds and unpredictable costs arising from complex pricing models used by CSPs.
+
+Enterprise Profile
+
+    Company Name: CloudCo Enterprises
+
+    Industry: Technology Solutions
+
+    Current Cloud Environment:
+
+        Primary CSP: Microsoft Azure
+
+        Secondary CSPs: Amazon Web Services (AWS) and Google Cloud Platform (GCP)
+
+Challenges:
+1. Skip Gap
+    - CloudCo’s IT team excels in Azure but lacks expertise in AWS and GCP.
+    - Acquiring new skills takes time and resources, leading to project delays and increased costs.
+2. Visibility and Control
+    - Native networking and security services across CSPs lack consistent visibility.
+    - Monitoring, troubleshooting, and enforcing policies become cumbersome.
+3. Day 2 Operations
+    - Managing multicloud deployments requires continuous attention.
+    - Routine tasks like scaling, patching, and compliance checks demand streamlined processes.
+4. Cost Optimization
+    - Data throughput charges vary across CSPs, leading to unpredictable costs.
+    - CloudCo seeks a solution that balances performance and cost-effectiveness.
+
+### Scenario 3 - Soft Cloud and Co
+Background:
+Optimizing NAT Gateway Costs with Aviatrix.
+
+Enterprise Profile:
+
+    Company Name: Soft Cloud and Co
+
+    Industry: Cloud Solutions Provider
+
+    Current Cloud Environment:
+
+        Primary CSP: AWS
+
+        Secondary CSPs: Azure and Google Cloud Platform (GCP)
+
+Challenges:
+1. High NAT Gateway Costs
+    - Soft Cloud and Co relies on native AWS NAT gateways for outbound traffic.
+    - These gateways incur data processing costs, especially for high traffic volumes.
+    - The enterprise seeks a cost-effective alternative.
+2. Visibility and Control
+    - Native AWS NAT gateways lack detailed visibility into egress traffic.
+    - Soft Cloud and Co struggles to manage and control expenses associated with network operations.
+3. Predictable Budgeting 
+    - The FinOps and budget teams need better cost predictability.
+    - Soft Cloud and Co aims to allocate resources effectively and avoid unexpected expenses.
+
+### Summary
+We've explored the hurdles organizations face in managing multicloud environments, including:
+- securing data transfer
+- addressing skill gaps
+- ensuring visibility and control
+- managing day-to-day operations
+- optimizing costs
+Aviatrix offers innovative, cost-effective solutions to overcome these obstacles seamlessly. Aviatrix's methods for streamlining multicloud networking is the solution.
+
 
