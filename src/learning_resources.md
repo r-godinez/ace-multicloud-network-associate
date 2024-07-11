@@ -135,49 +135,6 @@ This layer provides full visibility for all aspects of the cloud, meaning that i
 
 MCNA showcases a centralized controller to manage single or multiple clouds with a global, distributed, unified and normalized data plane. 
 
-#### Video
-![alt text](diagrams/csp_differences.png)
-
-- Networking and Security in the cloud is COMPLEX and LIMITED
-Lack of Architecture -> Chaos -> Non-Operational Deployments
-
-![alt text](diagrams/mcna_1.png)
-
-![alt text](diagrams/mcna_2.png)
-
-![alt text](diagrams/mcna_3.png)
-
-Device -> Cloud Access -> Global Transit -> Application 
-
-**Cloud Core**
------------------------------------------------
-- Application Layer: Virtual Data Centers (VPCs, VNets, VCN, etc.)
-- Global Transit Layer: Intra & Inter-Cloud Networking (Performance, Scale, Availability) 
-  - Unified Data Plane for single or multi-cloud
-
-**Cloud Access**
------------------------------------------------
-- Cloud Access Layer:Cloud Ingress/Egress (Data Center, Branch, Users)
-  - Where devices connect to access the cloud
-
-**Cloud Security**
------------------------------------------------
-Secure Everything: Ingress and Egress, Access Control, Encryption, and Segmentation Firewalls
-
-**Cloud Operations**
------------------------------------------------
-Global Visibility, Control & Automation: Day 1/2/3 Ops, move-add,change, troubleshooting, terraform
-
-**Benefits of MCNA Approach**
------------------------------------------------
-- Normalized Data Plane
-- Repeatable - Pod-like Architecture
-- Flexible and Modular Design
-- Embrace and Extend
-- Security embedded at each layer
-- Day 2 Ops ready
-
-
 
 ### Transit Networking
 The cloud providers allow VNet Peering when it comes to native VPCs or the VNet, which leads to problems with scale, as this model promotes a full mesh structure. This is because the VPC’s are not transitive, and thus leads to more complexities and difficulties when managing and updating the routes. Ultimately, there is no network correctness.
