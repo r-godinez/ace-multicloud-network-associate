@@ -136,6 +136,47 @@ This layer provides full visibility for all aspects of the cloud, meaning that i
 MCNA showcases a centralized controller to manage single or multiple clouds with a global, distributed, unified and normalized data plane. 
 
 #### Video
+![alt text](diagrams/csp_differences.png)
+
+- Networking and Security in the cloud is COMPLEX and LIMITED
+Lack of Architecture -> Chaos -> Non-Operational Deployments
+
+![alt text](diagrams/mcna_1.png)
+
+![alt text](diagrams/mcna_2.png)
+
+![alt text](diagrams/mcna_3.png)
+
+Device -> Cloud Access -> Global Transit -> Application 
+
+**Cloud Core**
+-----------------------------------------------
+- Application Layer: Virtual Data Centers (VPCs, VNets, VCN, etc.)
+- Global Transit Layer: Intra & Inter-Cloud Networking (Performance, Scale, Availability) 
+  - Unified Data Plane for single or multi-cloud
+
+**Cloud Access**
+-----------------------------------------------
+- Cloud Access Layer:Cloud Ingress/Egress (Data Center, Branch, Users)
+  - Where devices connect to access the cloud
+
+**Cloud Security**
+-----------------------------------------------
+Secure Everything: Ingress and Egress, Access Control, Encryption, and Segmentation Firewalls
+
+**Cloud Operations**
+-----------------------------------------------
+Global Visibility, Control & Automation: Day 1/2/3 Ops, move-add,change, troubleshooting, terraform
+
+**Benefits of MCNA Approach**
+-----------------------------------------------
+- Normalized Data Plane
+- Repeatable - Pod-like Architecture
+- Flexible and Modular Design
+- Embrace and Extend
+- Security embedded at each layer
+- Day 2 Ops ready
+
 
 
 ### Transit Networking
@@ -351,9 +392,16 @@ The Aviatrix Guard Duty Enforcement service extends the capabilities of AWS Guar
 
 ### Cloud Access
 #### User VPN VoD
+- supports multiple profiles (isolation between profiles)
+- automated firewall rules
+- security based on USER, not source IP
+- security rules apply, only when user is active, otherwise auto removed from gateway
+- supports split and full tunnels modes
+- any OpenVPN client is support
+
 Connecting remote users to data center locations and being able to connect to corporate resources through a VPN is essential, especially in today’s day and age. 
 
-User VPN Features: 
+User VPN Features: (Why use?)
 
 
 - Connects users to public cloud resources 
@@ -364,16 +412,26 @@ In the smart SAML VPN architecture, you deploy a VPC, or VNET in the cloud acces
 
 ![alt text](diagrams/user_vpn_vod.png)
 
- This solution is profile based. The partners, contractors, and employees have their own profiles and go to only their respective VPC’s/VNETS. Aviatrix provides isolation amongst the personas. This solution also allows connection to different Enterprise Identity Provider (IDP). The security rules apply automatically when the user is active but otherwise are removed from the gateway. The solution also supports both split and full tunnel modes. Furthermore, we provide a client for authentication with IDP, but any OpenVPN client is also supported.   
+ This solution is **profile based**. The partners, contractors, and employees have their own profiles and go to only their respective VPC’s/VNETS. Aviatrix provides isolation amongst the personas. This solution also allows connection to different Enterprise Identity Provider (IDP). The security rules apply automatically when the user is active but otherwise are removed from the gateway. The solution also supports both split and full tunnel modes. Furthermore, we provide a client for authentication with IDP, but any OpenVPN client is also supported.   
 
 #### Site2Cloud VoD
+- connectivity options - connecting to transit
+- supports overlapping IPs
 
+Aviatrix supports connectivity between its Gateways in the cloud and on-premise routers using a feature called Site to Cloud.
 
+Without this feature, the standard way of doing this includes only building an IPSec Tunnel, which is not easy to configure and doesn’t have a central place to operate and manage branches. Site to Cloud, in addition to the Aviatrix CloudN hardware appliance, makes it easier to connect to the on-prem data centers and allows connections to any site or cloud. Site to Cloud supports TCP and UDP tunnels, as well as overlapping IPs. 
 
+![alt text](diagrams/site_to_cloud.png)
 
+***How to Use Site to Cloud:***
+
+1. Build an encrypted connection to the gateway by managing the end of the tunnel.
+2. Provide a configuration template.
 
 ## Operations, Visibility, and Troubleshooting
 
+FlightPath: a troubleshooting tool, retrieves and displays cloud provider's network related information such as Security Groups, Route table and route table entries and network ACL. Helps identify connectivity problems.
 
 
 
