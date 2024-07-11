@@ -137,3 +137,43 @@ Global Visibility, Control & Automation: Day 1/2/3 Ops, move-add,change, trouble
 - Embrace and Extend
 - Security embedded at each layer
 - Day 2 Ops ready
+
+## CSP Limitation
+Limited Networking
+1. Bandwidth Constraints
+2. Higher Costs if exceeding bandwidth limits
+3. Lack of Advanced Networking Features 
+
+CSP Mistakes
+1. Cloud Provider Lock-In
+2. Lack of Interoperability
+3. Data Gravity and Transfer Costs
+
+**By proactively addressing the opportunities of cloud provider lock-in, organizations can maintain agility, minimize risk, and optimize their cloud deployments for long-term success.**
+
+Security Concerns
+1. Limited Security Controls
+2. Data Privacy and Compliance
+3. Identity and Access Management (IAM)
+
+Considerations in Building Consistent Network
+1. Lack of Interoperability
+2. Complex Configuration Management 
+3. Visibility and Monitoring Challenges
+
+**By leveraging best practices and adopting innovative technologies, organizations can overcome the complexities of multicloud networking and establish robust, scalable, and resilient network infrastructures.**
+
+CSP Considerations
+1. Downtime & Availability
+2. Vendor Lock-In
+3. Security & Compliance
+4. Cost Predictability
+
+Summary
+Challenges in a MCNA:
+- securing data transfer
+- addressing skill gaps
+- ensuring visibility and control
+- managing day-to-day operations
+- optimizing costs
+
