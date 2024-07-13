@@ -82,7 +82,7 @@ Aviatrix delivers enterprise-grade visibility tools via its CoPilot interface. E
 **Multi-Cloud Agility and Control:**
 - Aviatrix offers network agility through automation using Terraform
 
-Aviatrix fosters network agility through consistent automation using Terraform, allowing you to design and build architectures across any cloud region. You can rely on Aviatrix to maintain consistent security policies throughout all cloud environments, ensuring a secure and compliant network operation.
+Aviatrix fosters network agility through consistent automation using Terraform, allowing you to design and build architectures across any cloud region. You can rely on Aviatrix to maintain consistent security policies throughout all cloud environments, ensuring a secure and compliant network operation.i
 
 **Day 2 Operations Made Easy:**
 - CoPilot allows managing system easier
@@ -171,7 +171,7 @@ Aviatrix Edge plays a crucial role in hybrid networking by connecting on-premise
 To accommodate different deployment needs, Aviatrix Secure Edge offers various form factors, ensuring compatibility and optimal performance across environments. This includes options for edge hardware as well as virtual deployments on ESXi and KVM hypervisors.
 
 **High-Availability Configurations:**
-Aviatrix Edge is designed to support high-availability configurations, ensuring continuous service with minimal downtime. It supports various network interfaces including WAN, LAN, VLAN, and management interfaces, allowing seamless integration into diverse on-premises network setups.
+Avatrix Edge is designed to support high-availability configurations, ensuring continuous service with minimal downtime. It supports various network interfaces including WAN, LAN, VLAN, and management interfaces, allowing seamless integration into diverse on-premises network setups.
 
 **Cloud Migration and Network Extension:**
 Aviatrix Edge also facilitates cloud migration and network extension by extending cloud-based configurations and security frameworks to on-premises equipment seamlessly. This capability is vital for organizations that operate both on-premises data centers and cloud environments, ensuring a smooth transition and integration between different infrastructures.
